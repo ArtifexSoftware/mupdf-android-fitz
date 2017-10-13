@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+group = 'com.artifex.mupdf'
+version = '1.11.0'
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.3.3'
+	}
+}
+
+android {
+	compileSdkVersion 25
+	buildToolsVersion '25.0.3'
+
+	defaultConfig {
+		minSdkVersion 16
+		targetSdkVersion 25
+		externalNativeBuild.ndkBuild.arguments '-j4'
+
+		// Uncomment one of the following lines to limit builds to certain ABIs.
+		// ndk.abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+		// ndk.abiFilters 'armeabi-v7a', 'x86'
+		// ndk.abiFilters 'x86'
+	}
+
+	sourceSets {
+		main {
+			manifest.srcFile 'AndroidManifest.xml'
+			java.srcDirs 'libmupdf/platform/java/src'
+		}
+	}
+
+	externalNativeBuild {
+		ndkBuild.path 'libmupdf/platform/java/Android.mk'
+	}
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: 'file://MAVEN')
+			pom {
+				artifactId = 'fitz'
+				project {
+					licenses {
+						license {
+							name 'GNU Affero General Public License'
+							url 'https://www.gnu.org/licenses/agpl-3.0.html'
+						}
+					}
+				}
+			}
+		}
+	}
+}
