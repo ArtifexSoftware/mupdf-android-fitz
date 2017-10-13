@@ -1,0 +1,8 @@
+*.iml
+.externalNativeBuild
+.gradle
+.idea
+MAVEN
+build
+gradle.properties
+local.properties
