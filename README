@@ -1,1 +1,78 @@
-This project builds native JNI code and Java bindings for Android.
+# MuPDF Android Fitz
+
+This project builds the MuPDF Java bindings for Android.
+
+These bindings provide low level access to the MuPDF library using a handful of
+simple Java classes. The API is very similar to the one used by the `mutool
+run` JavaScript bindings.
+
+## License
+
+MuPDF is Copyright (c) 2006-2017 Artifex Software, Inc.
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along
+with this program. If not, see <http://www.gnu.org/licenses/>.
+
+## Prerequisites
+
+You need a working Android development environment, consisting of the Android
+SKD and the Android NDK. The easiest way is to use Android Studio to download
+and install the SDK and NDK.
+
+You also need GNU make and a working C compiler in order to auto-generate some
+files during the build step.
+
+## Building
+
+Download the project *recursively* using Git. Note that it is VERY important to
+use the recursive option, in order to also check out the libmupdf submodule and
+its submodules.
+
+        $ git clone --recursive git://git.ghostscript.com/mupdf-android-fitz.git
+
+Run the make generate step in libmupdf.
+
+	$ make -C libmupdf generate
+
+Edit the local.properties file to point to your Android SDK directory:
+
+        $ echo sdk.dir=$HOME/Android/Sdk > local.properties
+
+If all tools have been installed as per the prerequisites, build the app using
+the gradle wrapper:
+
+        $ ./gradlew assembleRelease
+
+If all has gone well you should now have an android AAR library in
+build/outputs/aar/mupdf-android-fitz-release.aar.
+
+## Maven
+
+The default is to create the Maven artifact in the 'MAVEN' directory. You can
+copy those files to the distribution site manually, or you can change the
+uploadArchives repository in build.gradle before running the uploadArchives
+task.
+
+	$ ./gradlew uploadArchives
+
+You can then copy the artifact files to where you want them:
+
+	$ rsync -av MAVEN/ com.example.maven:public_html/maven/
+
+## Reporting Bugs
+
+The MuPDF developers can be contacted on IRC in the #mupdf channel on
+irc.freenode.net.
+
+Report bugs on http://bugs.ghostscript.com/ with "MuPDF" as the product, "apps"
+as the component, and "Android" as the OS. If you are reporting a problem with
+a specific file, please include the file as an attachment.
