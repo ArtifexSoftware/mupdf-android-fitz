@@ -11,6 +11,6 @@ debug: generate
 archive: generate
 	ANDROID_HOME=$(ANDROID_HOME) ./gradlew uploadArchives
 sync: archive
-	rsync -av MAVEN/ ghostscript.com:public_html/maven/
+	rsync -av MAVEN/com/ ghostscript.com:/var/www/maven.ghostscript.com/com/
 clean:
 	rm -rf .externalNativeBuild .gradle build
