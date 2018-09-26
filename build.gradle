@@ -21,10 +21,11 @@ android {
 		targetSdkVersion 25
 		externalNativeBuild.ndkBuild.arguments '-j4'
 
-		// Uncomment one of the following lines to limit builds to certain ABIs.
-		// ndk.abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
-		// ndk.abiFilters 'armeabi-v7a', 'x86'
-		// ndk.abiFilters 'x86'
+		// Set ABI_FILTERS in your gradle.properties file
+		if (project.hasProperty('ABI_FILTERS')) {
+			ndk.abiFilters = []
+			ndk.abiFilters.addAll(ABI_FILTERS.split(',').collect{it as String})
+		}
 	}
 
 	sourceSets {
