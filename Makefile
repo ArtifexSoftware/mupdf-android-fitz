@@ -13,4 +13,4 @@ archive: generate
 sync: archive
 	rsync -av MAVEN/com/ ghostscript.com:/var/www/maven.ghostscript.com/com/
 clean:
-	rm -rf .externalNativeBuild .gradle build
+	rm -rf .externalNativeBuild .gradle build libmupdf/generated
