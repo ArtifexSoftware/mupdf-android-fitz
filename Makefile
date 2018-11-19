@@ -1,15 +1,17 @@
-ANDROID_HOME := $(shell which adb | sed 's,/platform-tools/adb,,')
+# This is a very simple Makefile that calls 'gradlew' to do the heavy lifting.
 
 default: archive
 
 generate:
 	make -j4 -C libmupdf generate
 release: generate
-	ANDROID_HOME=$(ANDROID_HOME) ./gradlew assembleRelease
+	./gradlew assembleRelease
 debug: generate
-	ANDROID_HOME=$(ANDROID_HOME) ./gradlew assembleDebug
+	./gradlew assembleDebug
+lint:
+	./gradlew lint
 archive: generate
-	ANDROID_HOME=$(ANDROID_HOME) ./gradlew uploadArchives
+	./gradlew uploadArchives
 sync: archive
 	rsync -av MAVEN/com/ ghostscript.com:/var/www/maven.ghostscript.com/com/
 clean:
