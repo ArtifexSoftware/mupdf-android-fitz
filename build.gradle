@@ -22,11 +22,11 @@ allprojects {
 }
 
 android {
-	compileSdkVersion 25
+	compileSdkVersion 26
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 25
+		targetSdkVersion 26
 		externalNativeBuild.ndkBuild.arguments '-j4'
 
 		// Set ABI_FILTERS in your gradle.properties file
