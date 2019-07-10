@@ -2,31 +2,32 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 group = 'com.artifex.mupdf'
-version = '1.15.0'
+version = '1.15.1'
 
 buildscript {
 	repositories {
-		jcenter()
 		google()
+		jcenter()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.1.0'
+		classpath 'com.android.tools.build:gradle:3.4.2'
 	}
 }
 
 allprojects {
 	repositories {
-		jcenter()
 		google()
+		jcenter()
 	}
 }
 
 android {
-	compileSdkVersion 26
+	compileSdkVersion 28
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 26
+		targetSdkVersion 28
+
 		externalNativeBuild.ndkBuild.arguments '-j4'
 
 		// Set ABI_FILTERS in your gradle.properties file
