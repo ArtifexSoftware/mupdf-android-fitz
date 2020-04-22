@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 group = 'com.artifex.mupdf'
-version = '1.16.1'
+version = '1.17.0'
 
 buildscript {
 	repositories {
@@ -55,7 +55,7 @@ uploadArchives {
 			if (project.hasProperty('MAVEN_REPO')) {
 				repository(url: MAVEN_REPO)
 			} else {
-				repository(url: 'file://MAVEN')
+				repository(url: "file://${System.properties['user.home']}/MAVEN")
 			}
 			pom {
 				artifactId = 'fitz'
