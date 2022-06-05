@@ -5,13 +5,13 @@ default: archive
 generate:
 	make -j4 -C libmupdf generate
 release: generate
-	./gradlew assembleRelease
+	./gradlew --warning-mode=all assembleRelease
 debug: generate
-	./gradlew assembleDebug
+	./gradlew --warning-mode=all assembleDebug
 lint:
-	./gradlew lint
+	./gradlew --warning-mode=all lint
 archive: generate
-	./gradlew uploadArchives
+	./gradlew --warning-mode=all uploadArchives
 sync: archive
 	rsync -av --chmod=g+w --chown=:gs-priv $(HOME)/MAVEN/com/ ghostscript.com:/var/www/maven.ghostscript.com/com/
 
