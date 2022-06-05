@@ -22,11 +22,11 @@ allprojects {
 }
 
 android {
-	compileSdkVersion 28
+	compileSdkVersion 31
 
 	defaultConfig {
-		minSdkVersion 16
-		targetSdkVersion 28
+		minSdkVersion 21
+		targetSdkVersion 31
 
 		externalNativeBuild.ndkBuild.arguments '-j4'
 
