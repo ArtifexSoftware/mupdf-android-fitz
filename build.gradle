@@ -15,7 +15,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:7.2.1'
+		classpath 'com.android.tools.build:gradle:7.2.2'
 	}
 }
 
@@ -32,11 +32,11 @@ allprojects {
 }
 
 android {
-	compileSdkVersion 31
+	compileSdkVersion 33
 
 	defaultConfig {
 		minSdkVersion 21
-		targetSdkVersion 31
+		targetSdkVersion 33
 
 		externalNativeBuild.ndkBuild.arguments '-j4'
 
