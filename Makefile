@@ -14,6 +14,9 @@ sync: archive
 	rsync -av --chmod=g+w --chown=:gs-web \
 		$(HOME)/MAVEN/com/artifex/mupdf/fitz/$(shell git describe --tags)/ \
 		ghostscript.com:/var/www/maven.ghostscript.com/com/artifex/mupdf/fitz/$(shell git describe --tags)/
+	rsync -av --chmod=g+w --chown=:gs-web \
+		$(HOME)/MAVEN/com/artifex/mupdf/fitz/maven-metadata.xml* \
+		ghostscript.com:/var/www/maven.ghostscript.com/com/artifex/mupdf/fitz/
 
 tarball: release
 	cd build/intermediates/ndkBuild/release/obj/local; \
