@@ -12,8 +12,8 @@ archive:
 	./gradlew --warning-mode=all publishReleasePublicationToLocalRepository
 sync: archive
 	rsync -av --chmod=g+w --chown=:gs-web \
-		$(HOME)/MAVEN/com/ \
-		ghostscript.com:/var/www/maven.ghostscript.com/com/
+		$(HOME)/MAVEN/com/artifex/mupdf/fitz/$(shell git describe --tags)/ \
+		ghostscript.com:/var/www/maven.ghostscript.com/com/artifex/mupdf/fitz/$(shell git describe --tags)/
 
 tarball: release
 	cd build/intermediates/ndkBuild/release/obj/local; \
