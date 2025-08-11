@@ -15,7 +15,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:7.2.2'
+		classpath 'com.android.tools.build:gradle:8.5.2'
 	}
 }
 
@@ -32,7 +32,9 @@ allprojects {
 }
 
 android {
+	namespace 'com.artifex.mupdf.fitz'
 	compileSdkVersion 33
+	ndkVersion '28.2.13676358'
 
 	defaultConfig {
 		minSdkVersion 21
