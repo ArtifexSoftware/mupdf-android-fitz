@@ -19,8 +19,13 @@ sync: archive
 		ghostscript.com:/var/www/maven.ghostscript.com/com/artifex/mupdf/fitz/
 
 tarball: release
-	cd build/intermediates/ndkBuild/release/obj/local; \
-		zip -q -r ../../../../../../fitz-symbols-$(shell git describe --tags).zip *
+	test -d build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib
+	test -f build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/x86_64/libmupdf_java.so
+	test -f build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/x86/libmupdf_java.so
+	test -f build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/arm64-v8a/libmupdf_java.so
+	test -f build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/armeabi-v7a/libmupdf_java.so
+	cd build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib; \
+		zip -q -r ../../../../../../../fitz-symbols-$(shell git describe --tags).zip *
 synctarball: tarball
 	rsync -av --chmod=g+w --chown=:gs-web \
 		fitz-symbols-$(shell git describe --tags).zip \
